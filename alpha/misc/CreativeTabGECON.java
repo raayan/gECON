@@ -1,4 +1,4 @@
-package gecon.mod.alpha;
+package gecon.mod.alpha.misc;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

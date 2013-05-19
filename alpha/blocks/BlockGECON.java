@@ -1,5 +1,6 @@
-package gecon.mod.alpha;
+package gecon.mod.alpha.blocks;
 
+import gecon.mod.alpha.gECON;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
