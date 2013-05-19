@@ -8,7 +8,7 @@ public class BankItem {
 	public BankItem(int id, int qty)
 	{
 		itemID = id;
-		itemQty = qty;
+		itemQty = qty;//TODO
 		
 	}
 }

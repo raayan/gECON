@@ -1,7 +1,5 @@
 package gecon.mod.alpha;
 
-import java.util.Random;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -25,7 +23,6 @@ import net.minecraft.world.World;
 
 public class BlockBank extends BlockGECON
 {
-	private Random bankRandom;
 	
 	protected BlockBank(int id, Material material) {
 		super(id, material);
