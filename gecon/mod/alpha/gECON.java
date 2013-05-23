@@ -1,9 +1,11 @@
 package gecon.mod.alpha;
 
-import gecon.mod.alpha.blocks.BlockBank;
-import gecon.mod.alpha.blocks.BlockMarket;
-import gecon.mod.alpha.blocks.BlockMarketAnalysis;
-import gecon.mod.alpha.blocks.BlockTradingTable;
+import gecon.mod.alpha.block.BlockBank;
+import gecon.mod.alpha.block.BlockMarket;
+import gecon.mod.alpha.block.BlockMarketAnalysis;
+import gecon.mod.alpha.block.BlockTradingTable;
+import gecon.mod.alpha.container.TileEntityBank;
+import gecon.mod.alpha.gui.GuiBank;
 import gecon.mod.alpha.misc.CreativeTabGECON;
 import java.util.ArrayList;
 
@@ -16,12 +18,15 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.src.BaseMod;
 import net.minecraft.src.ModLoader;
+import net.minecraft.tileentity.TileEntity;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
+
+
 
 @Mod(modid = gECON.modid, name = "gECON Alpha", version = "0.1a")
 public class gECON extends BaseMod
@@ -45,11 +50,7 @@ public class gECON extends BaseMod
 		 
 	 
 	 @Init
-	 public void load(FMLInitializationEvent event)
-	 {
-		
-		
-		 
+	 public void load(FMLInitializationEvent event) {
 		 //Setup the creative tab
 		 tabGECON = new CreativeTabGECON(CreativeTabs.getNextID(), bankBlock.blockID, "tabgECON", "gECON Tab");
 		 
@@ -59,23 +60,17 @@ public class gECON extends BaseMod
 		 marketBlock.setCreativeTab(tabGECON);
 		 marketAnalysisBlock.setCreativeTab(tabGECON);
 
-		 
-		 
-		 
 //		 Register the GUI link here
-		 ModLoader.registerContainerID(this, 0);
-		 		 
+		 ModLoader.registerContainerID(this, 30); //Bank Block ID
+		 	 
 //		 Register the bank tile here
-		 
+		 GameRegistry.registerTileEntity(TileEntityBank.class, "tileEntityBank");
 		 
 		 //Adds it to the game registry.
 		 GameRegistry.registerBlock(bankBlock, modid + bankBlock.getUnlocalizedName2());
 		 GameRegistry.registerBlock(tradingTableBlock, modid + tradingTableBlock.getUnlocalizedName2());
 		 GameRegistry.registerBlock(marketBlock, modid + marketBlock.getUnlocalizedName2());
 		 GameRegistry.registerBlock(marketAnalysisBlock, modid + marketAnalysisBlock.getUnlocalizedName2());
-
-
-		 
 		 
 		 //Add a name to the object
 		 LanguageRegistry.addName(bankBlock, "Bank");
@@ -83,8 +78,6 @@ public class gECON extends BaseMod
 		 LanguageRegistry.addName(marketBlock, "Market");
 		 LanguageRegistry.addName(marketAnalysisBlock, "Market Analysis");
 
-
-		 
 		 //Add recipes
 		 GameRegistry.addRecipe(new ItemStack(bankBlock), new Object[]{"GRG", "GCG", "GRG", Character.valueOf('G'), Item.ingotGold, Character.valueOf('R'), Item.redstone, Character.valueOf('C'), Block.chest});
 		 GameRegistry.addRecipe(new ItemStack(tradingTableBlock), new Object[]{"GRG", "GCG", "GRG", Character.valueOf('G'), Item.ingotGold, Character.valueOf('R'), Item.redstone, Character.valueOf('C'), Block.brick});
@@ -95,12 +88,10 @@ public class gECON extends BaseMod
 		 globalBank = new ArrayList<ItemStack>();
 	 }
 	 
-	 public GuiContainer getContainerGUI(EntityClientPlayerMP player, int id, int x, int y, int z)
-	 {
-		 switch(id)
-		 {
-		 	case 0:
-		 		return null; //GUID 0 code here
+	 public GuiContainer getContainerGUI(EntityClientPlayerMP player, int id, int x, int y, int z) {
+		 switch(id) {
+		 	case 30:
+		 		return new GuiBank(player, player.worldObj, x, y, z);
 		 	default:
 		 		return null;
 		 }
@@ -110,8 +101,7 @@ public class gECON extends BaseMod
 
 	@Override
 	public String getVersion() {
-		// TODO Auto-generated method stub
-		return null;
+		return "Pre-Alpha v0.1";
 	}
 
 	@Override

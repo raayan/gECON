@@ -1,4 +1,4 @@
-package gecon.mod.alpha.blocks;
+package gecon.mod.alpha.block;
 
 import net.minecraft.block.material.Material;
 

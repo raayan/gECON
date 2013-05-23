@@ -1,4 +1,4 @@
-package gecon.mod.alpha.blocks;
+package gecon.mod.alpha.block;
 
 import gecon.mod.alpha.gECON;
 import cpw.mods.fml.relauncher.Side;

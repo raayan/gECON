@@ -1,4 +1,4 @@
-package gecon.mod.alpha.blocks;
+package gecon.mod.alpha.block;
 
 import java.util.Random;
 
